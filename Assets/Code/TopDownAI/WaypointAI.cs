@@ -5,15 +5,28 @@ using UnityEngine.Assertions.Must;
 
 public class WaypointAI : MonoBehaviour
 {
-    public float speed = 5.0f;
-    public float MinDistance = 0.2f;
+    public float MoveSpeed = 5.0f;
     public Transform[] Waypoints;
+    public Transform AiSprite;
+    public float MinDistanceToWaypoint =  0.2f;
+    public GameObject playerObject;
+    public float ChasePlayerDistance;
+    private int CurrentWaypoint = 0;
 
     int index = 0;
 
     void Update()
     {
-        Patrol();
+        if (Vector2.Distance(playerObject.transform.position,
+                     AiSprite.position)
+                   < ChasePlayerDistance)
+        {
+            MoveAI(playerObject.transform.position);
+        }
+        else
+        {
+            Patrol();
+        }
     }
 
     void Patrol ()
@@ -29,6 +42,6 @@ public class WaypointAI : MonoBehaviour
 
     void MoveAI (Vector2 targetPosition)
     {
-        transform.position = Vector2.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
+        transform.position = Vector2.MoveTowards(transform.position, targetPosition, MoveSpeed * Time.deltaTime);
     }
 }
