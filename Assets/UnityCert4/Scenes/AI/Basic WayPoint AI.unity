@@ -309,7 +309,7 @@ GameObject:
   - component: {fileID: 1017946885}
   - component: {fileID: 1017946887}
   m_Layer: 0
-  m_Name: Enemy
+  m_Name: Enemy_BasicWaypointAI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -391,12 +391,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f80d58027c504f4b8c1340c97699dcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
-  MinDistance: 0.2
+  MoveSpeed: 5
   Waypoints:
   - {fileID: 1126160100}
   - {fileID: 38614147}
   - {fileID: 854493853}
+  AiSprite: {fileID: 1017946886}
+  MinDistanceToWaypoint: 0.2
+  playerObject: {fileID: 1335429315}
+  ChasePlayerDistance: 0
 --- !u!1 &1126160099
 GameObject:
   m_ObjectHideFlags: 0

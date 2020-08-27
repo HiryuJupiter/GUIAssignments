@@ -710,4 +710,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bd60351c75a60444b0e0a69f4f727bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
+  myStruct:
+    x: 0
+    y: 0
+    s: 
+  towerName: Bob
+  speed: -2.94
+  cost: 0
+  textArea: 
+  multipline: 
+  randomValue: -3

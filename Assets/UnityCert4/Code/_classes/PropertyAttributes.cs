@@ -1,9 +1,11 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Security;
 using UnityEngine;
 
 
+[System.Serializable]
 public struct MyStruct
 {
     public int x;
@@ -12,7 +14,7 @@ public struct MyStruct
 }
 
 [SelectionBase]
-public class CenterButton : MonoBehaviour
+public class PropertyAttributes : MonoBehaviour
 {
     [Header("My struct")]
     public MyStruct myStruct;
@@ -28,7 +30,8 @@ public class CenterButton : MonoBehaviour
     private float speed;
 
 
-
+    [Min(0)]
+    public int cost;
 
 
     [TextArea]
@@ -38,10 +41,25 @@ public class CenterButton : MonoBehaviour
     public string multipline;
 
     [Header("Context menu item")]
+    [ContextMenuItem("Get random value", "Function_RandomValue")]
+    public int randomValue;
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(transform.position, 5f);
+    }
 
 
-    
+    void Function_RandomValue ()
+    {
+        randomValue = UnityEngine.Random.Range(-10, 40);
+    }
 
+    [ContextMenu("Choose random value")]
+    void RandomValueMenu ()
+    {
+        randomValue = UnityEngine.Random.Range(-10, 40);
+    }
 
     // Start is called before the first frame update
     void Start()
