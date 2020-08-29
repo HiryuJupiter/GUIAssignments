@@ -24,4 +24,7 @@ public class TopDownPlayerController : MonoBehaviour
 
         playerRigidbody.AddForce(movement * Speed);
     }
+
+
 }
+

@@ -5,6 +5,8 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEditor;
 using System.Linq;
+using UnityEngine.Animations;
+using UnityEngine.Audio;
 
 //Make sure the game's quality settings only have 3 options, as we won't be changing them here.
 //Note 1: This code does not save the resolution set by the player because every time the game opens, it saves the 
@@ -15,17 +17,22 @@ public class MainMenuManager : MonoBehaviour
     public Dropdown Dropdown_Qualities;
     public Dropdown Dropdown_Resolutions;
     public Toggle Toggle_Fullscreen;
+    public AudioMixer mixer;
+    public Slider musicSlider;
+    public Slider SFXSlider;
+    
 
     const int SceneIndex_Running = 1;
     const string Key_Fullscreen = "Fullscreen";
     const string Key_Quality = "Quality";
     const string Key_Width = "Width";
     const string Key_Height = "Height";
+    const string Key_MusicVol = "MusicVol";
+    const string Key_SFXVol = "SFXVol";
 
     SceneManager sceneManager;
 
     //Cache Options menu values as fields so we can save them in player prefs later.
-    //Resolution[] allResolutions;
     List<Resolution> supportedResolutions;
     bool isFullscreen;
     int resolutionIndex = -1;
@@ -81,6 +88,16 @@ public class MainMenuManager : MonoBehaviour
         isFullscreen = b;
         Screen.fullScreen = b;
     }
+
+    public void SetMusicVol(float value)
+    {
+        mixer.SetFloat(Key_MusicVol, value);
+    }
+
+    public void SetSfxVol(float value)
+    {
+        mixer.SetFloat(Key_SFXVol, value);
+    }
     #endregion
 
     #region Load/Save
@@ -100,6 +117,9 @@ public class MainMenuManager : MonoBehaviour
         //Load resolution & set value in UI (Do not set resolution)
         PopulateResolutionDropdownBox();
         LoadResolution();
+
+        //Load audio 
+        LoadAudioSliders();
     }
 
     public void Save_OptionsSettings()
@@ -115,6 +135,10 @@ public class MainMenuManager : MonoBehaviour
         //Save resolution
         PlayerPrefs.SetInt(Key_Width, supportedResolutions[resolutionIndex].width);
         PlayerPrefs.SetInt(Key_Height, supportedResolutions[resolutionIndex].height);
+
+        //Save audio
+        PlayerPrefs.SetFloat(Key_MusicVol, musicSlider.value);
+        PlayerPrefs.SetFloat(Key_SFXVol, SFXSlider.value);
     }
     #endregion
 
@@ -198,6 +222,17 @@ public class MainMenuManager : MonoBehaviour
         Dropdown_Resolutions.value = supportedResolutions.Count - 1;
         SetResolution(supportedResolutions.Count - 1);
     }
-
     #endregion
+        
+    void LoadAudioSliders ()
+    {
+        float musicVol = PlayerPrefs.GetFloat(Key_MusicVol, 1f);
+        musicSlider.value = musicVol;
+        mixer.SetFloat(Key_MusicVol, musicVol);
+
+        float SFXVol = PlayerPrefs.GetFloat(Key_SFXVol, 1f);
+        SFXSlider.value = SFXVol;
+        mixer.SetFloat(Key_SFXVol, SFXVol);
+    }
+
 }
