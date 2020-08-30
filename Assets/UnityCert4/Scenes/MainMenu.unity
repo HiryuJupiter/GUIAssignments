@@ -205,7 +205,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 447813436}
   m_Direction: 0
   m_MinValue: -80
-  m_MaxValue: 20
+  m_MaxValue: 0
   m_WholeNumbers: 0
   m_Value: 0
   m_OnValueChanged:
@@ -385,7 +385,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &71673392
 Transform:
   m_ObjectHideFlags: 0
@@ -415,7 +415,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -2157,7 +2157,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1693325753}
   m_Direction: 0
   m_MinValue: -80
-  m_MaxValue: 20
+  m_MaxValue: 0
   m_WholeNumbers: 0
   m_Value: 0
   m_OnValueChanged:
@@ -2995,7 +2995,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1244155924
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3174,6 +3174,7 @@ MonoBehaviour:
   musicSlider: {fileID: 712582609}
   SFXSlider: {fileID: 19887725}
   MuteToggle: {fileID: 2079859138}
+  keyMapper: {fileID: 1929963259}
 --- !u!4 &1332977681
 Transform:
   m_ObjectHideFlags: 0
@@ -3468,7 +3469,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1510088118
 Transform:
   m_ObjectHideFlags: 0
@@ -3498,7 +3499,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -4063,7 +4064,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1929963262}
-        m_MethodName: OpenConfirmationMenu
+        m_MethodName: ConfirmReset
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

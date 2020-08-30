@@ -23,7 +23,7 @@ namespace MainMenu.Keybind
         public GameObject Btn_right;
         public GameObject Btn_jump;
 
-        public Dictionary<string, KeyCode> finalKeycodes { get; private set; }
+        Dictionary<string, KeyCode> keycodes;
         Dictionary<string, GameObject> btns;
         Dictionary<string, Image> bgs;
         Dictionary<string, Text> uiTexts;
@@ -31,7 +31,7 @@ namespace MainMenu.Keybind
         public void Awake()
         {
             //Look up dictionary initializations
-            finalKeycodes = new Dictionary<string, KeyCode>()
+            keycodes = new Dictionary<string, KeyCode>()
             {
                 { Keystrings.Up,       KeyScheme.Up },
                 { Keystrings.Down,     KeyScheme.Down },
@@ -69,7 +69,7 @@ namespace MainMenu.Keybind
         }
 
         #region Public - Look ups & getter methods
-        //public KeyCode GetKeyschemeKeycodes(string stringkey) => finalKeycodes[stringkey];
+        public KeyCode GetKeycode (string stringkey) => keycodes[stringkey];
 
         public Text GetBtnText(string stringkey) => uiTexts[stringkey];
 

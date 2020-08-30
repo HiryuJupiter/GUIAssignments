@@ -22,12 +22,14 @@ namespace MainMenu.Keybind
         KeyRemappingLookup Lookup;
         KeybindReset resetter;
 
-        //Status
+        //Cache UI elements
         GameObject currentButton;
         Image currentImage;
-        Text currentText;        
+        Text currentText;
         string previousStringOnButton; //Cache the original text so we can revert changes
 
+        //Buffer keybinds: so we can revert the changes
+        Dictionary<string, KeyCode> bufferKeybind;
         #endregion
 
         #region Initialization
@@ -39,15 +41,28 @@ namespace MainMenu.Keybind
 
             //Initialzation
             IsListeningForKey = false;
-            KeyScheme.LoadFromPlayerPrefs();
-            UpdateAllUiDisplay();
+            bufferKeybind = new Dictionary<string, KeyCode>();
+            LoadSetting();
         }
-
-        
         #endregion
 
         #region Public
-        
+        public void SaveAllKeybinds()
+        {
+            foreach (var b in bufferKeybind)
+            {
+                KeyScheme.SaveKeycodeToPlayerPrefs(b.Key, b.Value);
+                //Lookup.GetBtnText(b.Key).text = Lookup.GetKeycode(b.Key).ToString();
+            }
+
+            //KeyScheme.SaveAllToPlayerPrefs();
+        }
+
+        public void LoadSetting ()
+        {
+            KeyScheme.LoadFromPlayerPrefs();
+            UpdateAllUiDisplay();
+        }
 
         public void UpdateAllUiDisplay()
         {
@@ -64,9 +79,7 @@ namespace MainMenu.Keybind
             currentImage.color = ButtonCOlor_Default;
             IsListeningForKey = false;
         }
-        #endregion
-
-        #region Listening for key     
+ 
         public void ChangeKey(GameObject button)
         {
             if (!IsListeningForKey)
@@ -90,6 +103,17 @@ namespace MainMenu.Keybind
             resetter.CloseConfirmMenu();
         }
 
+        public void ResetKeys ()
+        {
+            BufferBindKey(Keystrings.Up,    KeyCode.W);
+            BufferBindKey(Keystrings.Down,  KeyCode.S);
+            BufferBindKey(Keystrings.Left,  KeyCode.A);
+            BufferBindKey(Keystrings.Right, KeyCode.D);
+            BufferBindKey(Keystrings.Jump,  KeyCode.Space);
+        }
+        #endregion
+
+        #region Keybind
         IEnumerator ListenForKeyInput()
         {
             while (IsListeningForKey)
@@ -97,7 +121,7 @@ namespace MainMenu.Keybind
                 if (Input.GetKeyDown(KeyCode.Escape)) //Exit keybind
                 {
                     ExitKeyBind();
-                    currentText.text = previousStringOnButton;                    
+                    currentText.text = previousStringOnButton;
                     yield break;
                 }
 
@@ -115,12 +139,13 @@ namespace MainMenu.Keybind
                             //Update UI Text
                             currentText.text = keycode.ToString();
 
-                            //Save (int)keycode to Keyscheme and playerPref
+                            //Save (int)keycode to playerPref
                             string keystring = Lookup.GetKeystringOfButton(currentButton);
-                            Lookup.finalKeycodes[keystring] = keycode;
-                            KeyScheme.SaveKeycodeToPlayerPrefs(keystring, keycode);
+                            BufferBindKey(keystring, keycode);
 
-                            Debug.Log("Remapped " + currentText.name + " button: " + keycode);
+                            //KeyScheme.SaveKeycodeToPlayerPrefs(keystring, keycode); //If you want to save 1 key at a time
+
+                            //Debug.Log("Remapped " + currentText.name + " button: " + keycode);
                             ExitKeyBind();
                             yield break;
                         }
@@ -129,6 +154,14 @@ namespace MainMenu.Keybind
                 yield return null;
             }
         }
+
+        void BufferBindKey (string keystring, KeyCode keyCode)
+        {
+            bufferKeybind[keystring] = keyCode;
+
+            Lookup.GetBtnText(keystring).text = keyCode.ToString();
+            //Lookup.GetBtnText(keystring).text = Lookup.GetKeycode(keystring).ToString();
+        }       
         #endregion
     }
 }

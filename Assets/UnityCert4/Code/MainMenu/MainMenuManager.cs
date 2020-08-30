@@ -7,6 +7,7 @@ using UnityEditor;
 using System.Linq;
 using UnityEngine.Animations;
 using UnityEngine.Audio;
+using MainMenu.Keybind;
 
 //Make sure the game's quality settings only have 3 options, as we won't be changing them here.
 //Note 1: This code does not save the resolution set by the player because every time the game opens, it saves the 
@@ -25,9 +26,13 @@ namespace MainMenu
         public Slider musicSlider;
         public Slider SFXSlider;
         public Toggle MuteToggle;
-        
+
+        [Header("Class ref")]
+        public KeyRemapper keyMapper;
+
         //Script reference
         SceneManager sceneManager;
+        
 
         //Graphics
         List<Resolution> supportedResolutions;
@@ -46,7 +51,6 @@ namespace MainMenu
         const string Key_mute       = "isMute";
 
         const int SceneIndex_Running = 1;
-        const int mixerHighestValue = 20;
         const int mixerLowestValue = -80;
 
         #region MonoBehavior
@@ -123,7 +127,10 @@ namespace MainMenu
             LoadResolution();
 
             //LOAD AUDIO
-            LoadAudio();            
+            LoadAudio();
+
+            //Load keys
+            keyMapper.LoadSetting();
         }
 
         public void Save_OptionsSettings()
@@ -144,6 +151,9 @@ namespace MainMenu
             PlayerPrefs.SetFloat(Key_MusicVol, musicSlider.value);
             PlayerPrefs.SetFloat(Key_SFXVol, SFXSlider.value);
             PlayerPrefs.SetInt(Key_mute, MuteToggle.isOn ? 1 : 0);
+
+            //Key binding
+            keyMapper.SaveAllKeybinds();
         }        
         #endregion
 
@@ -242,7 +252,7 @@ namespace MainMenu
 
         public void SetMute(bool b)
         {
-            mixer.SetFloat(Key_mute, b ? mixerLowestValue : mixerHighestValue);
+            mixer.SetFloat(Key_mute, b ? mixerLowestValue : 0);
         }
 
         void LoadAudio()
@@ -261,7 +271,7 @@ namespace MainMenu
 
             bool isMute = PlayerPrefs.GetInt(Key_mute, 0) == 1;
             MuteToggle.isOn = isMute; //set ui
-            mixer.SetFloat(Key_mute, isMute ? mixerLowestValue : mixerHighestValue); //set audio mixer
+            mixer.SetFloat(Key_mute, isMute ? mixerLowestValue : 0); //set audio mixer
         }
         #endregion
     }

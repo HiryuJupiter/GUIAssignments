@@ -25,8 +25,9 @@ namespace MainMenu.Keybind
         public void ConfirmReset()
         {
             Debug.Log("Key bindings have been reset.");
-            KeyScheme.ResetAll();
-            keyRemapper.UpdateAllUiDisplay();
+            keyRemapper.ResetKeys();
+            //KeyScheme.ResetAll();
+            //keyRemapper.UpdateAllUiDisplay();
             CloseConfirmMenu();
         }
 
