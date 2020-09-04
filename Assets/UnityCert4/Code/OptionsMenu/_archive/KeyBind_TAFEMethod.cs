@@ -32,7 +32,6 @@ namespace MainMenu
             ui_right.name = stringkey_right;
             ui_jump.name = stringkey_jump;
 
-
             //Initialize dictionary
             keybinds = new Dictionary<string, KeyCode>()
         {

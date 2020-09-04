@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-namespace MainMenu.Keybind
+//No longer in use because we're not going with a confirm reset menu
+namespace OptionsMenu.Keybind
 {
     [RequireComponent(typeof(KeyRemapper))]
     public class KeybindReset : MonoBehaviour

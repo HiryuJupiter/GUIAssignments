@@ -1,4 +1,4 @@
-﻿namespace MainMenu.Keybind
+﻿namespace OptionsMenu.Keybind
 {
     //Storing strings that are frequently used as dictionary-keys and playerpref-keys,
     //so that we don't accidentally mistype anything.

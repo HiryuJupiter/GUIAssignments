@@ -1,21 +1,27 @@
 ﻿using System;
+using System.Threading.Tasks;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.Remoting.Messaging;
 using UnityEngine;
+using UnityEngine.UI;
+using System.Reflection.Emit;
 
 public class test : MonoBehaviour
 {
-    Dictionary<string, KeyCode> lookup;
-
-    private void Update()
+    [System.Serializable]
+    public struct LookUpTest
     {
-        
+        public string keystring;
+        public GameObject button;
+        public KeyCode defaultKeycode;
+        internal Text buttonText; //Added by code to save us the drag-and-drop in inspector.
     }
 
-    private void OnGUI()
-    {
-        Debug.Log(Event.current);
-    }
+    public LookUpTest[] lookUp;
 
+    void Start()
+    {
+
+    }
 }

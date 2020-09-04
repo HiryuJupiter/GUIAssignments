@@ -5,10 +5,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
-namespace MainMenu.Keybind
+namespace OptionsMenu.Keybind
 {
     //Note: UI text elements must have the same name as the stringkeys.
-    [RequireComponent(typeof(KeyRemappingLookup))]
+    [RequireComponent(typeof(KeyRemappingUILookup))]
     public class KeyRemapper : MonoBehaviour
     {
         #region Variables
@@ -19,8 +19,8 @@ namespace MainMenu.Keybind
         public bool IsListeningForKey { get; private set; }
 
         //Class reference
-        KeyRemappingLookup Lookup;
-        KeybindReset resetter;
+        KeyRemappingUILookup Lookup;
+        //KeybindReset resetter;
 
         //Cache UI elements
         GameObject currentButton;
@@ -36,8 +36,8 @@ namespace MainMenu.Keybind
         void Start()
         {
             //Reference
-            Lookup = GetComponent<KeyRemappingLookup>();
-            resetter = GetComponent<KeybindReset>();
+            Lookup = GetComponent<KeyRemappingUILookup>();
+            //resetter = GetComponent<KeybindReset>();
 
             //Initialzation
             IsListeningForKey = false;
@@ -100,16 +100,16 @@ namespace MainMenu.Keybind
                 StartCoroutine(ListenForKeyInput());
             }
 
-            resetter.CloseConfirmMenu();
+            //resetter.CloseConfirmMenu();
         }
 
         public void ResetKeys ()
         {
-            BufferBindKey(Keystrings.Up,    KeyCode.W);
-            BufferBindKey(Keystrings.Down,  KeyCode.S);
-            BufferBindKey(Keystrings.Left,  KeyCode.A);
-            BufferBindKey(Keystrings.Right, KeyCode.D);
-            BufferBindKey(Keystrings.Jump,  KeyCode.Space);
+            SetBufferKeybind(Keystrings.Up,    KeyCode.W);
+            SetBufferKeybind(Keystrings.Down,  KeyCode.S);
+            SetBufferKeybind(Keystrings.Left,  KeyCode.A);
+            SetBufferKeybind(Keystrings.Right, KeyCode.D);
+            SetBufferKeybind(Keystrings.Jump,  KeyCode.Space);
         }
         #endregion
 
@@ -141,7 +141,7 @@ namespace MainMenu.Keybind
 
                             //Save (int)keycode to playerPref
                             string keystring = Lookup.GetKeystringOfButton(currentButton);
-                            BufferBindKey(keystring, keycode);
+                            SetBufferKeybind(keystring, keycode);
 
                             //KeyScheme.SaveKeycodeToPlayerPrefs(keystring, keycode); //If you want to save 1 key at a time
 
@@ -155,7 +155,7 @@ namespace MainMenu.Keybind
             }
         }
 
-        void BufferBindKey (string keystring, KeyCode keyCode)
+        void SetBufferKeybind (string keystring, KeyCode keyCode)
         {
             bufferKeybind[keystring] = keyCode;
 

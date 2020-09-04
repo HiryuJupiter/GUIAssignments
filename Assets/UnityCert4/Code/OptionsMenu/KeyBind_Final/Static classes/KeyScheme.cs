@@ -8,7 +8,7 @@ We use a (reference type) class to wrap the (value type) KeyCodes, so that we ca
 that is used during KeyRemapping.
  */
 
-namespace MainMenu.Keybind
+namespace OptionsMenu.Keybind
 {
     public static class KeyScheme
     {
@@ -40,8 +40,6 @@ namespace MainMenu.Keybind
         {
             PlayerPrefs.SetInt(stringkey, (int)keyCode);
         }
-
-
 
         public static void ResetAll ()
         {
