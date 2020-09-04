@@ -1,16 +1,17 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
-public class Singleton <T> : MonoBehaviour where T : MonoBehaviour
+public abstract class Singleton<T> : MonoBehaviour where T : MonoBehaviour
 {
-    static T instance;
-
+    protected static T instance;
     public static T Instance
     {
         get
         {
             if (instance == null)
             {
-                instance = (T)FindObjectOfType(typeof(T));
+                instance = FindObjectOfType<T>();
 
                 if (instance == null)
                 {
@@ -24,4 +25,26 @@ public class Singleton <T> : MonoBehaviour where T : MonoBehaviour
             return instance;
         }
     }
+
+    protected void DeleteDuplicateSingleton()
+    {
+        if (instance != null && instance != this)
+        {
+            DestroyImmediate(gameObject);
+            //Debug.Log("Duplicate " + typeof(T).ToString() + " has being destroyed.");
+        }
+    }
 }
+
+//if (instance == null)
+//{
+//    instance = this;
+//    DontDestroyOnLoad(this);
+//}
+//else
+//{
+//    if (this != instance)
+//    {
+//        Destroy(this.gameObject);
+//    }
+//}
