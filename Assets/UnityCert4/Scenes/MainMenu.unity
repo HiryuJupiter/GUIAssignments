@@ -703,7 +703,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6348297d266063646bf0f9a95fa30fa2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TransitionDuration: 1
+  TransitionDuration: 0.2
   MainMenu: {fileID: 8169854082406387015}
   OptionsMenu: {fileID: 1157251437546630320}
 --- !u!1 &1510088117
@@ -1182,10 +1182,15 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 35698289520118937, guid: 472011a73186da0449bf5d7f594c5656,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 35698289520118939, guid: 472011a73186da0449bf5d7f594c5656,
         type: 3}
       propertyPath: m_Alpha
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 35698289520118939, guid: 472011a73186da0449bf5d7f594c5656,
         type: 3}
@@ -1911,7 +1916,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1332977682}
-        m_MethodName: OptionsToMain
+        m_MethodName: MainToOptions
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

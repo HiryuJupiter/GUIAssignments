@@ -3,8 +3,8 @@ using System.Collections;
 
 public class MainMenu_PanelTransition : MonoBehaviour
 {
-    [Range(0f, 5f)]
-    public float TransitionDuration = 1f;
+    [Range(0f, 1f)]
+    public float TransitionDuration = 0.2f;
 
     [SerializeField] CanvasGroup MainMenu;
     [SerializeField] CanvasGroup OptionsMenu;
@@ -21,7 +21,7 @@ public class MainMenu_PanelTransition : MonoBehaviour
 
     IEnumerator DelayedInitialFade()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.2f);
         StartCoroutine(CanvasGroupHelper.CanvasFadeIn(MainMenu, TransitionDuration));
     }
     #endregion
@@ -29,6 +29,7 @@ public class MainMenu_PanelTransition : MonoBehaviour
     #region Public - transition call
     public void MainToOptions()
     {
+        Debug.Log("MainToOptions");
         if (!inTransition)
         {
             StartCoroutine(CanvasGroupHelper.CanvasesCrossfade(MainMenu, OptionsMenu, TransitionDuration));
@@ -37,6 +38,7 @@ public class MainMenu_PanelTransition : MonoBehaviour
 
     public void OptionsToMain()
     {
+        Debug.Log("OptionsToMain");
         if (!inTransition)
         {
             StartCoroutine(CanvasGroupHelper.CanvasesCrossfade(OptionsMenu, MainMenu, TransitionDuration));

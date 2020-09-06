@@ -9,40 +9,36 @@ We use StringkeyInput to associate individual:
 a. UI buttons that the player press on to start rebinding a key
 b. playerPref 
  */
-namespace OptionsMenu.Keybind
+public class KeyRemappingUILookup : MonoBehaviour
 {
-    [System.Serializable]
-    public class KeyRemappingUILookup : MonoBehaviour
+    //We want the player to drag in the ui-buttons to avoid the risk they'll drag in the ui-label or null root gameobject,
+    //as we'll be using the Button's gameobject to referencing and assigning the button-text.
+    public Button Up;
+    public Button Down;
+    public Button Left;
+    public Button Right;
+    public Button Jump;
+
+    public class UILookUp
     {
-        //We want the player to drag in the ui-buttons to avoid the risk they'll drag in the ui-label or null root gameobject,
-        //as we'll be using the Button's gameobject to referencing and assigning the button-text.
-        public Button Up;
-        public Button Down;
-        public Button Left;
-        public Button Right;
-        public Button Jump;
+        internal string keystring;
+        internal GameObject buttonGameObject;
+        internal Text buttonText;
 
-        public class UILookUp
+        public UILookUp(string keystring, GameObject buttonGameObject, Text buttonText)
         {
-            internal string keystring;
-            internal GameObject buttonGameObject;
-            internal Text buttonText;
-
-            public UILookUp(string keystring, GameObject buttonGameObject, Text buttonText)
-            {
-                this.keystring = keystring;
-                this.buttonGameObject = buttonGameObject;
-                this.buttonText = buttonText;
-            }
+            this.keystring = keystring;
+            this.buttonGameObject = buttonGameObject;
+            this.buttonText = buttonText;
         }
+    }
 
-        List<UILookUp> lookups;
+    List<UILookUp> lookups;
 
-        public void Awake()
-        {
-            //Look up dictionary initializations
-
-            lookups = new List<UILookUp>()
+    void Awake()
+    {
+        //Look up dictionary initializations
+        lookups = new List<UILookUp>()
             {
                 new UILookUp(Keystrings.Up,     Up.gameObject,      Up.GetComponentInChildren<Text>()),
                 new UILookUp(Keystrings.Down ,  Down.gameObject,    Down.GetComponentInChildren<Text>()),
@@ -50,38 +46,18 @@ namespace OptionsMenu.Keybind
                 new UILookUp(Keystrings.Right , Right.gameObject,   Right.GetComponentInChildren<Text>()),
                 new UILookUp(Keystrings.Jump,   Jump.gameObject,    Jump.GetComponentInChildren<Text>())
             };
-        }
-
-        #region Public - Look ups & getter methods
-        public Text GetBtnText(string stringkey) 
-        {
-            //Debug.Log("checking key: " + stringkey);
-            return lookups.FirstOrDefault(x => x.keystring == stringkey).buttonText; 
-        }
-
-        public string GetKeystringOfButton(GameObject target)
-        {            
-            return lookups.FirstOrDefault(x => x.buttonGameObject == target).keystring;
-        }
-            
-        #endregion
     }
+
+    #region Public - Look ups & getter methods
+    public Text GetBtnText(string stringkey)
+    {
+        return lookups.FirstOrDefault(x => x.keystring == stringkey).buttonText;
+    }
+
+    public string GetKeystringOfButton(GameObject target)
+    {
+        return lookups.FirstOrDefault(x => x.buttonGameObject == target).keystring;
+    }
+
+    #endregion
 }
-
-/*
-
-
-        public KeyLookUp[] LookUp;
-
-        public void Awake()
-        {
-            //Auto assign
-            for (int i = 0; i < LookUp.Length; i++)
-            {
-                LookUp[i].buttonGameObject = LookUp[i].uiRoot.GetComponentInChildren<Button>().gameObject;
-                LookUp[i].buttonBG = LookUp[i].buttonGameObject.GetComponentInChildren<Image>();
-                LookUp[i].buttonText = LookUp[i].buttonGameObject.GetComponentInChildren<Text>();
-            }
-        }
-
- */
