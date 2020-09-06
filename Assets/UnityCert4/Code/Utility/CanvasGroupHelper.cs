@@ -4,7 +4,7 @@ using System.Collections;
 
 public static class CanvasGroupHelper
 {
-    public static IEnumerator CanvasCrossfade(CanvasGroup canvasToHide, CanvasGroup canvaToReveal, float transitionTime)
+    public static IEnumerator CanvasesCrossfade(CanvasGroup canvasToHide, CanvasGroup canvaToReveal, float transitionTime)
     {
         //Disale 
         canvasToHide.interactable = false;

@@ -3,26 +3,26 @@ using System.Collections;
 
 public class MainMenu_PanelTransition : MonoBehaviour
 {
-    public CanvasGroup MainMenu;
-    public CanvasGroup OptionsMenu;
-
-    [Range(0, 5f)]
+    [Range(0f, 5f)]
     public float TransitionDuration = 1f;
+
+    [SerializeField] CanvasGroup MainMenu;
+    [SerializeField] CanvasGroup OptionsMenu;
 
     bool inTransition = false;
 
     #region Initialization
     void Awake()
     {
-        InstantHide(MainMenu);
-        InstantHide(OptionsMenu);
+        CanvasGroupHelper.InstantHide(MainMenu);
+        CanvasGroupHelper.InstantHide(OptionsMenu);
         StartCoroutine(DelayedInitialFade());
     }
 
     IEnumerator DelayedInitialFade()
     {
         yield return new WaitForSeconds(0.5f);
-        StartCoroutine(CanvasFadeIn(MainMenu));
+        StartCoroutine(CanvasGroupHelper.CanvasFadeIn(MainMenu, TransitionDuration));
     }
     #endregion
 
@@ -31,7 +31,7 @@ public class MainMenu_PanelTransition : MonoBehaviour
     {
         if (!inTransition)
         {
-            StartCoroutine(CanvasTransition(MainMenu, OptionsMenu));
+            StartCoroutine(CanvasGroupHelper.CanvasesCrossfade(MainMenu, OptionsMenu, TransitionDuration));
         }
     }
 
@@ -39,61 +39,8 @@ public class MainMenu_PanelTransition : MonoBehaviour
     {
         if (!inTransition)
         {
-            StartCoroutine(CanvasTransition(OptionsMenu, MainMenu));
+            StartCoroutine(CanvasGroupHelper.CanvasesCrossfade(OptionsMenu, MainMenu, TransitionDuration));
         }
-    }
-    #endregion
-
-
-    #region Transition logics
-    IEnumerator CanvasTransition(CanvasGroup canvasToHide, CanvasGroup canvaToReveal)
-    {
-        inTransition = true;
-
-        //Disale 
-        canvasToHide.interactable = false;
-        canvasToHide.blocksRaycasts = false;
-
-        float t = 0;
-        while (t < TransitionDuration)
-        {
-            t += Time.deltaTime;
-            canvaToReveal.alpha = t / TransitionDuration;
-            canvasToHide.alpha = 1 - (t / TransitionDuration);
-
-            yield return null;
-        }
-
-        canvaToReveal.interactable = true;
-        canvaToReveal.blocksRaycasts = true;
-
-        inTransition = false;
-    }
-
-    IEnumerator CanvasFadeIn(CanvasGroup canvas)
-    {
-        inTransition = true;
-
-        float t = 0;
-        while (t < TransitionDuration)
-        {
-            t += Time.deltaTime;
-            canvas.alpha = t / TransitionDuration;
-
-            yield return null;
-        }
-
-        canvas.interactable = true;
-        canvas.blocksRaycasts = true;
-
-        inTransition = false;
-    }
-
-    void InstantHide(CanvasGroup canvasToHide)
-    {
-        canvasToHide.interactable = false;
-        canvasToHide.blocksRaycasts = false;
-        canvasToHide.alpha = 0f;
     }
     #endregion
 }

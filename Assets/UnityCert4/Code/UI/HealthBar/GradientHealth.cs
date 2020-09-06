@@ -7,18 +7,20 @@ using UnityEngine.UI;
 public class GradientHealth : MonoBehaviour
 {
     [Header("References")]
-    public RectTransform rectTransform;
-    public Image healthBarFG;
+    
+    public Image BarFG;
     public Gradient gradient;
-    public Transform followObj;
+    Transform followObj;
 
     [Header("Stats")]
     public float maxHealth = 100;
 
     float currentHealth = 100;
+    RectTransform rectTransform;
 
     public void InitializeStats(float maxHealth, Transform followObj)
     {
+        rectTransform = GetComponent<RectTransform>();
         this.maxHealth = maxHealth;
         currentHealth = maxHealth;
         this.followObj = followObj;
@@ -57,8 +59,8 @@ public class GradientHealth : MonoBehaviour
     #region Health bar
     void UpdateHealthBar()
     {
-        healthBarFG.fillAmount = Mathf.Clamp01(currentHealth / maxHealth);
-        healthBarFG.color = gradient.Evaluate(healthBarFG.fillAmount);
+        BarFG.fillAmount = Mathf.Clamp01(currentHealth / maxHealth);
+        BarFG.color = gradient.Evaluate(BarFG.fillAmount);
     }
 
     void FollowTarget()

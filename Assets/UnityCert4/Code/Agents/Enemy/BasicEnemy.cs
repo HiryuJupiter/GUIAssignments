@@ -1,14 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class SceneForestManager : SceneManagerBase
+public class BasicEnemy : Agent
 {
-
-    private void Awake()
-    {
-        
-    }
-
 
     void Start()
     {

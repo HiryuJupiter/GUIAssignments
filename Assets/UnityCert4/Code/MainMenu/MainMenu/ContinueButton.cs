@@ -12,13 +12,30 @@ public class ContinueButton : MonoBehaviour
         img = button.gameObject.GetComponent<Image>();
     }
 
-    public void EnableButton ()
+    private void Start()
+    {
+        RefreshDisplay();
+    }
+
+    public void RefreshDisplay ()
+    {
+        if (SaveSystem.HasSaveFile())
+        {
+            EnableButton();
+        }
+        else
+        {
+            GreyOutButton();
+        }
+    }
+
+    void EnableButton ()
     {
         button.enabled = true;
         img.color = Color.white;
     }
 
-    public void GreyOutButton ()
+    void GreyOutButton ()
     {
         button.enabled = false;
         img.color = Color.grey;

@@ -19,12 +19,10 @@ public class SaveSystem : MonoBehaviour
 
     public static bool TryLoadPlayerData (GameData gameData)
     {
-        string path = SavePath;
-
         if (HasSaveFile())
         {
             BinaryFormatter formatter = new BinaryFormatter();
-            FileStream stream = new FileStream(path, FileMode.Open);
+            FileStream stream = new FileStream(SavePath, FileMode.Open);
 
             GameDataSerializable data = formatter.Deserialize(stream) as GameDataSerializable;
             stream.Close();
@@ -45,4 +43,12 @@ public class SaveSystem : MonoBehaviour
     }
 
     static string SavePath => Application.persistentDataPath + "/player.save";
+
+    public static void ClearSave ()
+    {
+        if (HasSaveFile())
+        {
+            File.Delete(SavePath);
+        }
+    }
 }

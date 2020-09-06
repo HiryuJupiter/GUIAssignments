@@ -14,13 +14,11 @@ public class PlayerController3D : MonoBehaviour
     [SerializeField] float speed = 12f;
     [SerializeField] float gravity = -9.81f;
     [SerializeField] float mouseSensitivity = 100f;
-
-    [Header("References")]
-    [SerializeField] Transform cameraTransform;
-    [SerializeField] CharacterController controller;
-
-    //Class reference
+        
+    //Reference
     GameManager gm;
+    Transform cameraTransform;
+    CharacterController controller;
 
     //Status
     Vector3 velocity;
@@ -38,6 +36,8 @@ public class PlayerController3D : MonoBehaviour
     {
         //Reference
         gm = GameManager.Instance;
+        cameraTransform = GetComponentInChildren<Camera>().transform;
+        controller = GetComponent<CharacterController>();
 
         //Initialization
         Vector3 cameraRotation = cameraTransform.rotation.eulerAngles;
@@ -80,16 +80,17 @@ public class PlayerController3D : MonoBehaviour
     #region Save & Load
     void Save ()
     {
-        gm.Data.playerLevel     = level;
-        gm.Data.playerHealth    = health;
-        gm.Data.playerPosition  = transform.position;
+        gm.GameData.playerLevel     = level;
+        gm.GameData.playerHealth    = health;
+        gm.GameData.playerPosition  = transform.position;
     }
 
     void Load ()
     {
-        level               = gm.Data.playerLevel;
-        health              = gm.Data.playerHealth;
-        transform.position  = gm.Data.playerPosition;
+        Debug.Log("Player loads data");
+        level = gm.GameData.playerLevel;
+        health              = gm.GameData.playerHealth;
+        transform.position  = gm.GameData.playerPosition;
     }
     #endregion
 

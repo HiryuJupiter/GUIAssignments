@@ -9,19 +9,19 @@ public abstract class Singleton<T> : MonoBehaviour where T : MonoBehaviour
     {
         get
         {
-            if (instance == null)
-            {
-                instance = FindObjectOfType<T>();
+            //if (instance == null)
+            //{
+            //    instance = FindObjectOfType<T>();
 
-                if (instance == null)
-                {
-                    var singletonObject = new GameObject();
-                    instance = singletonObject.AddComponent<T>();
-                    singletonObject.name = typeof(T).ToString() + " (Singleton)";
+            //    if (instance == null)
+            //    {
+            //        var singletonObject = new GameObject();
+            //        instance = singletonObject.AddComponent<T>();
+            //        singletonObject.name = typeof(T).ToString() + " (Singleton)";
 
-                    DontDestroyOnLoad(singletonObject);
-                }
-            }
+            //        DontDestroyOnLoad(singletonObject);
+            //    }
+            //}
             return instance;
         }
     }
@@ -35,16 +35,3 @@ public abstract class Singleton<T> : MonoBehaviour where T : MonoBehaviour
         }
     }
 }
-
-//if (instance == null)
-//{
-//    instance = this;
-//    DontDestroyOnLoad(this);
-//}
-//else
-//{
-//    if (this != instance)
-//    {
-//        Destroy(this.gameObject);
-//    }
-//}

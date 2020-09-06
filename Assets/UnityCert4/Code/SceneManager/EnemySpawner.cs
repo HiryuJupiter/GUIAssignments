@@ -28,6 +28,6 @@ public class EnemySpawner : MonoBehaviour
     {
         GameObject go = Instantiate(Pf_Enemy, pos, Quaternion.identity);        ;
         GameObject ui = Instantiate(Pf_ui_gradientHealth, pos, Quaternion.identity, CanvasParent);
-        ui.GetComponent<GradientHealth>().InitializeStats(maxHP, go.GetComponent<Enemy>().headPoint);
+        ui.GetComponent<GradientHealth>().InitializeStats(maxHP, go.GetComponent<Agent>().headPoint);
     }
 }

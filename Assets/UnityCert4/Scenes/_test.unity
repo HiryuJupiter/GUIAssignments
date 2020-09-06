@@ -682,40 +682,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1562691889}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3eae3e20ea2b7e14da0e894642bc66f1, type: 3}
+  m_Script: {fileID: 11500000, guid: 4c03bab41cc2fe5499e5b4c14af180f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lookUp:
-  - keystring: 
-    button: {fileID: 0}
-    defaultKeycode: 0
-  - keystring: 
-    button: {fileID: 0}
-    defaultKeycode: 0
-  - keystring: 
-    button: {fileID: 0}
-    defaultKeycode: 0
-  - keystring: 
-    button: {fileID: 0}
-    defaultKeycode: 0
-  - keystring: 
-    button: {fileID: 0}
-    defaultKeycode: 0
-  - keystring: 
-    button: {fileID: 0}
-    defaultKeycode: 0
-  - keystring: 
-    button: {fileID: 0}
-    defaultKeycode: 0
-  - keystring: 
-    button: {fileID: 0}
-    defaultKeycode: 0
-  - keystring: 
-    button: {fileID: 0}
-    defaultKeycode: 0
-  - keystring: 
-    button: {fileID: 0}
-    defaultKeycode: 0
+  lookUp: []
 --- !u!4 &1562691891
 Transform:
   m_ObjectHideFlags: 0

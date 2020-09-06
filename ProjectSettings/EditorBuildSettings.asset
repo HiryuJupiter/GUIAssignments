@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/UnityCert4/Scenes/FPS.unity
     guid: 9b9a3403ce91e554e860e4e2a6aab0a2
+  - enabled: 1
+    path: Assets/UnityCert4/Scenes/_test.unity
+    guid: 81d922a42d9b33b4bb983f63686db41c
   m_configObjects: {}

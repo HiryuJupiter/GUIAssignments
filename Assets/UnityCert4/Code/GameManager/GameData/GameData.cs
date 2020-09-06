@@ -9,10 +9,10 @@ public class GameData
     public int playerHealth;
     public Vector3 playerPosition;
 
-
     #region Save to file & Load from file
     public void SaveGameData()
     {
+        gameLevelIndex = GetCurrentSceneIndex;
         SaveSystem.SavePlayerData(this);
     }
 
@@ -20,23 +20,15 @@ public class GameData
     {
         if (!SaveSystem.TryLoadPlayerData(this))
         {
-            SetToDefault(levelIndex);
+            Debug.LogWarning("Saved game data doesn't exist. Player shouldn't have been able to load in the first place.");
+
+            gameLevelIndex = GetCurrentSceneIndex;
+            playerLevel = 1;
+            playerHealth = 100;
+            playerPosition = new Vector3(0f, 0f, 0f);
         }        
     }
-    #endregion
 
-    #region Default game data
-    public void SetToDefault (int index)
-    {
-        switch (index)
-        {
-            default:
-                gameLevelIndex = 1;
-                playerLevel = 1;
-                playerHealth = 100;
-                playerPosition = new Vector3(0f, 0f, 0f);
-                break;
-        }
-    }
+    int GetCurrentSceneIndex => UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex;
     #endregion
 }

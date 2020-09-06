@@ -158,7 +158,7 @@ GameObject:
   - component: {fileID: 8528327954561958001}
   - component: {fileID: 8528327954561958007}
   - component: {fileID: 8528327954561958006}
-  - component: {fileID: 8528327954561958004}
+  - component: {fileID: 400313910824237496}
   m_Layer: 5
   m_Name: Pf_HPBar
   m_TagString: Untagged
@@ -222,7 +222,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &8528327954561958004
+--- !u!114 &400313910824237496
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -231,11 +231,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 8528327954561958000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 13b57c95200f22347816620d897a38b2, type: 3}
+  m_Script: {fileID: 11500000, guid: 335029c1c31f9b04d8d09fe96eb91942, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rectTransform: {fileID: 8528327954561958001}
-  healthBarFG: {fileID: 8528327952890226578}
+  BarFG: {fileID: 8528327952890226578}
   gradient:
     serializedVersion: 2
     key0: {r: 1, g: 0.062068954, b: 0, a: 1}
@@ -265,5 +264,4 @@ MonoBehaviour:
     m_Mode: 0
     m_NumColorKeys: 3
     m_NumAlphaKeys: 2
-  followObj: {fileID: 0}
   maxHealth: 100

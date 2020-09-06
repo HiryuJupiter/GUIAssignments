@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 956195173987487497}
   - component: {fileID: 956195173987487498}
   - component: {fileID: 956195173987487499}
-  - component: {fileID: 1620068852878218976}
+  - component: {fileID: 6755357552040940940}
   m_Layer: 0
   m_Name: Pf_EnemyDummy
   m_TagString: Untagged
@@ -125,7 +125,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1620068852878218976
+--- !u!114 &6755357552040940940
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -134,7 +134,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 956195173987487500}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 47b4383f5a75f31438def59cb78eb2fb, type: 3}
+  m_Script: {fileID: 11500000, guid: acd9d9f88ba99cf47bba85ddb0b76bba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   headPoint: {fileID: 956195173299560465}

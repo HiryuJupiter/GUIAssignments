@@ -12,9 +12,6 @@ enum MainMenuState
 
 public class MainMenuManager : MonoBehaviour
 {
-    [SerializeField] ContinueButton continueButton;
-    [SerializeField] MainMenu_PanelTransition menuTransition;
-
     const int Scene_one = 1;
 
     //MainMenuState state = MainMenuState.MainMenu;
@@ -24,20 +21,22 @@ public class MainMenuManager : MonoBehaviour
 
     void Start()
     {
-        gm = GameManager.Instance;    
+        gm = GameManager.Instance;
+        SceneEvents.InitializeGameWideEvents();
     }
 
     #region Public - Main menu
     public void StartNewGame()
     {
         SceneManager.LoadScene(Scene_one);
+
     }
 
     public void ContinueGame()
     {
         gm.loadeSaveFile = true;
-        gm.Data.LoadGameData(Scene_one);
-        SceneManager.LoadScene(Scene_one);
+        gm.GameData.LoadGameData();
+        SceneManager.LoadScene(gm.GameData.gameLevelIndex);
     }
 
     public void Clicked_Quit()
