@@ -38,7 +38,7 @@ public class KeyRemapper : MonoBehaviour
             //Lookup.GetBtnText(b.Key).text = Lookup.GetKeycode(b.Key).ToString();
         }
 
-        //KeyScheme.SaveAllToPlayerPrefs();
+        KeyScheme.LoadFromPlayerPrefs();
     }
 
     public void Initialize()
@@ -151,4 +151,6 @@ public class KeyRemapper : MonoBehaviour
         //Lookup.GetBtnText(keystring).text = Lookup.GetKeycode(keystring).ToString();
     }
     #endregion
+
+    
 }

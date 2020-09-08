@@ -4,20 +4,32 @@ using System;
 
 public class SceneEvent
 {
-    public delegate void delegateContainer();
-    public event delegateContainer Event;
+    public delegate void evenHandler();
+    public event evenHandler OnEvent ;
+    string eventName;
+
+    public SceneEvent(string eventName)
+    {
+        //Debug.Log($"event {eventName} constructed");
+        this.eventName = eventName;
+    }
 
     public void CallEvent()
     {
-        Event?.Invoke();
+        OnEvent?.Invoke();
     }
 
-    public void UnSubscribe()
+    public void UnSubscribeAll()
     {
-        Delegate[] clients = Event.GetInvocationList();
-        foreach (Delegate c in clients)
+        if (OnEvent != null)
         {
-            Event -= (delegateContainer)c;
+            //Debug.Log($"{eventName} unsubscribing.");
+            Delegate[] clients = OnEvent.GetInvocationList();
+
+            foreach (Delegate d in clients)
+            {
+                OnEvent -= (evenHandler)d;
+            }
         }
     }
 }

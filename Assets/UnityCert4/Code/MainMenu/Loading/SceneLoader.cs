@@ -1,32 +1,51 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using System.Collections;
+using System.Collections.Generic;
+using UnityEngine.Assertions.Must;
 
 public class SceneLoader : MonoBehaviour
 {
-    //Issues with synchronous loading: no way of knowing when it's done. 
-    //Synchornous loading locks up the main thread, where everything freezes until the scene is loaded, 
-    //including your loading screen.
+    public Image progressBar;
+    public Text progressText;
 
-    public void LoadScene()
+    public void LoadLevel(int sceneIndex)
     {
-        SceneManager.LoadScene("Loading");
-
-        StartCoroutine(LoadAfterTimer());
+        StartCoroutine(LoadAsync(sceneIndex));
     }
 
-    IEnumerator LoadAfterTimer()
+    IEnumerator LoadAsync (int sceneIndex)
     {
-        // the reason we use a coroutine is simply to avoid a quick "flash" of the 
-        // loading screen by introducing an artificial minimum load time :boo:
-        yield return new WaitForSeconds(2.0f);
+        AsyncOperation operation = SceneManager.LoadSceneAsync(sceneIndex);
+        operation.allowSceneActivation = false;
 
-        LoadScene("Game");
+        while (!operation.isDone)
+        {
+            //the last 10 % can't be multi-threaded
+            float progress = Mathf.Clamp01(operation.progress / 0.9f);
+            progressBar.fillAmount = progress;
+            progressText.text = progress * 100 + "%";
+
+            if (progress >= 0.9f)
+            {
+                progressText.text = "Press anykey to continue";
+                if (Input.anyKeyDown)
+                {
+                    operation.allowSceneActivation = true;
+                }
+            }
+            yield return null;
+        }
     }
 
-    private void LoadScene(string sceneName)
+    void Start()
     {
-        SceneManager.LoadScene(sceneName);
+
     }
 
+    void Update()
+    {
+
+    }
 }

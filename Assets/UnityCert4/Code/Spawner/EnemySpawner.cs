@@ -5,10 +5,8 @@ using UnityEngine.UI;
 
 public class EnemySpawner : MonoBehaviour
 {
-    public Transform CanvasParent;
-
     public GameObject Pf_Enemy;
-    public GameObject Pf_ui_gradientHealth;
+    
 
     void Start()
     {
@@ -26,8 +24,6 @@ public class EnemySpawner : MonoBehaviour
 
     void SpawnEnemy (Vector3 pos, float maxHP)
     {
-        GameObject go = Instantiate(Pf_Enemy, pos, Quaternion.identity);        ;
-        GameObject ui = Instantiate(Pf_ui_gradientHealth, pos, Quaternion.identity, CanvasParent);
-        ui.GetComponent<GradientHealthScreenSpace>().InitializeStats(maxHP, go.GetComponent<Agent>().headPoint);
+        GameObject go = Instantiate(Pf_Enemy, pos, Quaternion.identity);
     }
 }

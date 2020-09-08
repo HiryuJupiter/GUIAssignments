@@ -66,8 +66,8 @@ public class PlayerController3D : MonoBehaviour
 
     void Move()
     {
-        float x = Input.GetAxis("Horizontal");
-        float z = Input.GetAxis("Vertical");
+        float x = GameInput.MoveX;
+        float z = GameInput.MoveY;
 
         Vector3 move = (transform.right * x) + (transform.forward * z);
 
@@ -97,14 +97,14 @@ public class PlayerController3D : MonoBehaviour
     #region Event subscription
     void Subscribe ()
     {
-        SceneEvents.GameSave.Event += Save;
-        SceneEvents.GameLoad.Event += Load;
+        SceneEvents.GameSave.OnEvent += Save;
+        SceneEvents.GameLoad.OnEvent += Load;
     }
 
     private void OnDisable()
     {
-        SceneEvents.GameSave.Event -= Save;
-        SceneEvents.GameLoad.Event += Load;
+        SceneEvents.GameSave.OnEvent -= Save;
+        SceneEvents.GameLoad.OnEvent += Load;
     }
     #endregion
 }

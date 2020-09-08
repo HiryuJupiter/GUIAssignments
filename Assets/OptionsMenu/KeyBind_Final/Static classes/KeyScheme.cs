@@ -25,14 +25,14 @@ public static class KeyScheme
         Jump = (KeyCode)PlayerPrefs.GetInt(Keystrings.Jump, (int)KeyCode.Space);
     }
 
-    public static void SaveAllToPlayerPrefs()
-    {
-        PlayerPrefs.SetInt(Keystrings.Up, (int)Up);
-        PlayerPrefs.SetInt(Keystrings.Down, (int)Down);
-        PlayerPrefs.SetInt(Keystrings.Left, (int)Left);
-        PlayerPrefs.SetInt(Keystrings.Right, (int)Right);
-        PlayerPrefs.SetInt(Keystrings.Jump, (int)Jump);
-    }
+    //public static void SaveAllToPlayerPrefs()
+    //{
+    //    PlayerPrefs.SetInt(Keystrings.Up, (int)Up);
+    //    PlayerPrefs.SetInt(Keystrings.Down, (int)Down);
+    //    PlayerPrefs.SetInt(Keystrings.Left, (int)Left);
+    //    PlayerPrefs.SetInt(Keystrings.Right, (int)Right);
+    //    PlayerPrefs.SetInt(Keystrings.Jump, (int)Jump);
+    //}
 
     public static void SaveKeycodeToPlayerPrefs(string stringkey, KeyCode keyCode)
     {

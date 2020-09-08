@@ -15,22 +15,22 @@ public class GameManager : Singleton<GameManager>
             instance = this;
             DontDestroyOnLoad(this);
         }
-
-        //Initialize
-        SceneEvents.InitializeGameWideEvents();
-        SceneEvents.InitializePerLevelEvents();
     }
 
     //Awake is called before OnLevelWasLoaded
     private void OnLevelWasLoaded(int level)
     {
-        //Load game
         if (loadeSaveFile)
         {
-            loadeSaveFile = false;
-            Debug.Log("GameManager calls SceneEvents.GameLoad");
-
-            SceneEvents.GameLoad.CallEvent();
+            LoadGameData();
         }
+    }
+
+    void LoadGameData ()
+    {
+        loadeSaveFile = false;
+        Debug.Log("GameManager calls SceneEvents.GameLoad");
+
+        SceneEvents.GameLoad.CallEvent();
     }
 }

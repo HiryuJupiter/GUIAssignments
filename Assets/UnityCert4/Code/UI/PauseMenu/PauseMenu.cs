@@ -2,14 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(PauseMenuCanvasTransition))]
 public class PauseMenu : MonoBehaviour
 {
-    public CanvasGroup canvas_Pause;
-
+    PauseMenuCanvasTransition transition;
+    SceneForestManager sceneManager;
     bool isPaused = false;
 
+    #region MonoBehavior
     void Start()
     {
+        transition = GetComponent<PauseMenuCanvasTransition>();
+        sceneManager = SceneForestManager.Instance;
         SetPause(false);
     }
     void Update()
@@ -20,29 +24,56 @@ public class PauseMenu : MonoBehaviour
         }
     }
 
+    void OnDisable()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
+    #endregion
+
+
+    #region Public - Click unity events
     public void TogglePause()
     {
         isPaused = !isPaused;
-
         SetPause(isPaused);
     }
 
+    public void OpenOptionsMenu ()
+    {
+        transition.SetVisibility_OptionsMenu(true);
+    }
+
+    public void CloseOptionsMenu ()
+    {
+        transition.SetVisibility_OptionsMenu(false);
+    }
+
+    public void QuitGame()
+    {
+        sceneManager.ReturnToMainMenu();
+        isPaused = false;
+        SetPause(isPaused);
+    }
+    #endregion
+
+    #region Pause logic
     void SetPause(bool pause)
     {
         isPaused = pause;
+        transition.SetVisibility_PauseMenu(isPaused);
         if (isPaused)
         {
             Time.timeScale = 0f;
-            canvas_Pause.alpha = 1f;
-            canvas_Pause.interactable = true;
-            canvas_Pause.blocksRaycasts = true;
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
         }
         else
         {
             Time.timeScale = 1f;
-            canvas_Pause.alpha = 0f;
-            canvas_Pause.interactable = false;
-            canvas_Pause.blocksRaycasts = false;
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
         }
     }
+    #endregion
 }

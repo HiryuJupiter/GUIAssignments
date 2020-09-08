@@ -45,7 +45,7 @@ public class GradientHealthWorldSpace : MonoBehaviour
 
     void Update()
     {
-        FollowTarget();
+        //FollowTarget();
 
         //Debug
         if (Input.GetKeyDown(KeyCode.D))

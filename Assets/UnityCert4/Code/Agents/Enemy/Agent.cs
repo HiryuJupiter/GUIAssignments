@@ -6,5 +6,5 @@ using UnityEngine.UI;
 
 public abstract class Agent : MonoBehaviour
 {
-    public Transform headPoint;
+    //public Transform headPoint;
 }

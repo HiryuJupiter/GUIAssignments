@@ -18,7 +18,7 @@ public class SceneLoaderAsync : MonoBehaviour
     {
         // LoadSceneAsync() returns an AsyncOperation, 
         // so will only continue past this point when the Operation has finished
-        yield return SceneManager.LoadSceneAsync("Loading");
+        yield return UnityEngine.SceneManagement.SceneManager.LoadSceneAsync("Loading");
 
         //What is the nature of Asyncoperation?
 
@@ -28,7 +28,7 @@ public class SceneLoaderAsync : MonoBehaviour
 
     private IEnumerator LoadScene(string sceneName)
     {
-        var asyncScene = SceneManager.LoadSceneAsync(sceneName);
+        AsyncOperation asyncScene = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(sceneName);
 
         // this value stops the scene from displaying when it's finished loading
         asyncScene.allowSceneActivation = false;
