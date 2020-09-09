@@ -13,9 +13,12 @@ public class MainMenuManager : MonoBehaviour
 
     //Class reference
     GameManager gm;
+    SfxManager sfxManager;
 
     void Start()
     {
+        sfxManager = SfxManager.instance;
+
         gm = GameManager.Instance;
     }
 

@@ -7,6 +7,7 @@ public class PauseMenu : MonoBehaviour
 {
     PauseMenuCanvasTransition transition;
     SceneForestManager sceneManager;
+    SfxManager sfxManager;
     bool isPaused = false;
 
     #region MonoBehavior
@@ -14,6 +15,8 @@ public class PauseMenu : MonoBehaviour
     {
         transition = GetComponent<PauseMenuCanvasTransition>();
         sceneManager = SceneForestManager.Instance;
+        sfxManager = SfxManager.instance;
+
         SetPause(false);
     }
     void Update()
@@ -33,19 +36,15 @@ public class PauseMenu : MonoBehaviour
 
 
     #region Public - Click unity events
-    public void TogglePause()
-    {
-        isPaused = !isPaused;
-        SetPause(isPaused);
-    }
-
     public void OpenOptionsMenu ()
     {
+        sfxManager.SpawnUIMenuTransition();
         transition.SetVisibility_OptionsMenu(true);
     }
 
     public void CloseOptionsMenu ()
     {
+        sfxManager.SpawnUIMenuTransition();
         transition.SetVisibility_OptionsMenu(false);
     }
 
@@ -58,6 +57,13 @@ public class PauseMenu : MonoBehaviour
     #endregion
 
     #region Pause logic
+    void TogglePause()
+    {
+        isPaused = !isPaused;
+        SetPause(isPaused);
+        sfxManager.SpawnUIMenuTransition();
+    }
+
     void SetPause(bool pause)
     {
         isPaused = pause;

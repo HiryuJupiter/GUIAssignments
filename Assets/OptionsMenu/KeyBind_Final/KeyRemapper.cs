@@ -18,6 +18,7 @@ public class KeyRemapper : MonoBehaviour
 
     //Class reference
     KeyRemappingUILookup Lookup;
+    SfxManager sfxManager;
     //KeybindReset resetter;
 
     //Cache UI elements
@@ -47,6 +48,7 @@ public class KeyRemapper : MonoBehaviour
     {
         //Reference
         Lookup = GetComponent<KeyRemappingUILookup>();
+        sfxManager = SfxManager.instance;
 
         //Load keyscheme and update display
         KeyScheme.LoadKeycodesFromPlayerPrefs();
@@ -55,7 +57,6 @@ public class KeyRemapper : MonoBehaviour
 
     public void UpdateAllUiButtonText()
     {
-
         Lookup.GetBtnText(Keystrings.Up).text = KeyScheme.Up.ToString();
         Lookup.GetBtnText(Keystrings.Down).text = KeyScheme.Down.ToString();
         Lookup.GetBtnText(Keystrings.Left).text = KeyScheme.Left.ToString();
@@ -75,6 +76,7 @@ public class KeyRemapper : MonoBehaviour
     {
         if (!IsListeningForKey)
         {
+            sfxManager.SpawnUIButtonClick();
             IsListeningForKey = true;
 
             //Cache references

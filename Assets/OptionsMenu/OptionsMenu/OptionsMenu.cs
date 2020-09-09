@@ -39,43 +39,57 @@ public class OptionsMenu : MonoBehaviour
     const string Key_SFXVol = "SFXVol";
     const string Key_mute = "isMute";
 
-
     const int mixerLowestValue = -80;
 
+    SfxManager sfxManager;
 
     void Start()
     {
+        sfxManager = SfxManager.instance;
         LoadOptionsSettings();
     }
 
-
-    #region Public - Graphics
-    public void SetResolution(int index)
+    #region Public UI Click Handlers
+    //GRAPHICS
+    public void UIHandle_SetResolution(int index)
     {
-        //Note: we cannot put Dropdown_Resolutions.value in here, as when the dropdown (ui element)'s value is changed, it
-        //will trigger it's onValueChange event, thus creating a circular loop. Therefore we can only directly set the
-        //dropdown values outside.
-        resolutionIndex = index;
-
-        Screen.SetResolution(supportedResolutions[index].width, supportedResolutions[index].height, Screen.fullScreen);
+        SetResolution(index);
+        sfxManager.SpawnUIButtonClick();
     }
 
-    public void SetQuality(int index)
+    public void UIHandle_SetQuality(int index)
     {
-        qualityIndex = index;
-        QualitySettings.SetQualityLevel(index);
+        SetQuality(index);
+        sfxManager.SpawnUIButtonClick();
     }
 
-    public void SetFullScreen(bool b)
+    public void UIHandle_SetFullScreen(bool b)
     {
-        isFullscreen = b;
-        Screen.fullScreen = b;
+        SetFullScreen(b);
+        sfxManager.SpawnUIButtonClick();
     }
 
+    //AUDIO
+    public void UIHandle_Set_MusicVolumn(float value)
+    {
+        //sfxManager.SpawnQuietTick();
+        Set_MusicVolumn(value);
+    }
 
+    public void UIHandle_Set_SfxVolumn(float value)
+    {
+        //sfxManager.SpawnQuietTick();
+        Set_SfxVolumn(value);
+    }
+
+    public void UIHandle_SetMute(bool b)
+    {
+        sfxManager.SpawnUIButtonClick();
+        SetMute(b);
+    }
     #endregion
 
-    #region Load/Save
+    #region Public - Load/Save
     public void LoadOptionsSettings()
     {
         Debug.Log("loading options menus settings");
@@ -124,6 +138,30 @@ public class OptionsMenu : MonoBehaviour
 
         //Key binding
         keyMapper.SaveAllKeybinds();
+    }
+    #endregion
+
+    #region  Graphics
+    void SetResolution(int index)
+    {
+        //Note: we cannot put Dropdown_Resolutions.value in here, as when the dropdown (ui element)'s value is changed, it
+        //will trigger it's onValueChange event, thus creating a circular loop. Therefore we can only directly set the
+        //dropdown values outside.
+        resolutionIndex = index;
+
+        Screen.SetResolution(supportedResolutions[index].width, supportedResolutions[index].height, Screen.fullScreen);
+    }
+
+    void SetQuality(int index)
+    {
+        qualityIndex = index;
+        QualitySettings.SetQualityLevel(index);
+    }
+
+    void SetFullScreen(bool b)
+    {
+        isFullscreen = b;
+        Screen.fullScreen = b;
     }
     #endregion
 
@@ -215,17 +253,17 @@ public class OptionsMenu : MonoBehaviour
     #endregion
 
     #region Audio
-    public void Set_MusicVolumn(float value)
+    void Set_MusicVolumn(float value)
     {
         mixer.SetFloat(Key_MusicVol, value);
     }
 
-    public void Set_SfxVolumn(float value)
+    void Set_SfxVolumn(float value)
     {
         mixer.SetFloat(Key_SFXVol, value);
     }
 
-    public void SetMute(bool b)
+    void SetMute(bool b)
     {
         mixer.SetFloat(Key_mute, b ? mixerLowestValue : 0);
     }

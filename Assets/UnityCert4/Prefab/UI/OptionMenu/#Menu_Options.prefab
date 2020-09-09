@@ -140,7 +140,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 35698289520118937}
-        m_MethodName: SetQuality
+        m_MethodName: UIHandle_SetQuality
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1056,7 +1056,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 35698289520118937}
-        m_MethodName: SetFullScreen
+        m_MethodName: UIHandle_SetFullScreen
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1856,7 +1856,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 35698289520118937}
-        m_MethodName: Set_MusicVolumn
+        m_MethodName: UIHandle_Set_MusicVolumn
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2667,7 +2667,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 35698289520118937}
-        m_MethodName: Set_SfxVolumn
+        m_MethodName: UIHandle_Set_SfxVolumn
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4439,7 +4439,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 35698289520118937}
-        m_MethodName: SetMute
+        m_MethodName: UIHandle_SetMute
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5554,7 +5554,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 35698289520118937}
-        m_MethodName: SetResolution
+        m_MethodName: UIHandle_SetResolution
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
