@@ -12,7 +12,7 @@ public class MainMenu_CanvasTransition : MonoBehaviour
     [SerializeField] CanvasGroup Canvas_OptionsMenu;
     [SerializeField] CanvasGroup Canvas_LoadingScreen;
 
-    bool inSplash = true;
+    bool inSplash = false;
 
     #region Initialization
     void Awake()
@@ -27,6 +27,9 @@ public class MainMenu_CanvasTransition : MonoBehaviour
     {
         yield return new WaitForSeconds(0.2f);
         StartCoroutine(CanvasGroupHelper.CanvasFadeIn(Canvas_PressAnyKey, TransitionDuration));
+        yield return new WaitForSeconds(TransitionDuration);
+        inSplash = true;
+
     }
     #endregion
 

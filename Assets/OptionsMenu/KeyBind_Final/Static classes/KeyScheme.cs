@@ -16,7 +16,7 @@ public static class KeyScheme
     public static KeyCode Right;
     public static KeyCode Jump;
 
-    public static void LoadFromPlayerPrefs()
+    public static void LoadKeycodesFromPlayerPrefs()
     {
         Up = (KeyCode)PlayerPrefs.GetInt(Keystrings.Up, (int)KeyCode.W);
         Down = (KeyCode)PlayerPrefs.GetInt(Keystrings.Down, (int)KeyCode.S);
@@ -47,6 +47,6 @@ public static class KeyScheme
         PlayerPrefs.SetInt(Keystrings.Right, (int)KeyCode.D);
         PlayerPrefs.SetInt(Keystrings.Jump, (int)KeyCode.Space);
 
-        LoadFromPlayerPrefs();
+        LoadKeycodesFromPlayerPrefs();
     }
 }

@@ -45,7 +45,7 @@ public class OptionsMenu : MonoBehaviour
 
     void Start()
     {
-        Load_OptionsSettings();
+        LoadOptionsSettings();
     }
 
 
@@ -76,7 +76,7 @@ public class OptionsMenu : MonoBehaviour
     #endregion
 
     #region Load/Save
-    public void Load_OptionsSettings()
+    public void LoadOptionsSettings()
     {
         Debug.Log("loading options menus settings");
 
@@ -103,7 +103,7 @@ public class OptionsMenu : MonoBehaviour
         keyMapper.Initialize();
     }
 
-    public void Save_OptionsSettings()
+    public void SaveOptionsSettings()
     {
         //Save isFullscreen
         PlayerPrefs.SetInt(Key_Fullscreen, isFullscreen == true ? 1 : 0);

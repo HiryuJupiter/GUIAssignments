@@ -10,8 +10,9 @@ public class KeyRemapper : MonoBehaviour
 {
     #region Variables
     [Header("Colors")]
-    public Color32 ButtonCOlor_Default;
+    public Color32 ButtonColor_Default;
     public Color32 ButtonColor_Modifying;
+    
 
     public bool IsListeningForKey { get; private set; }
 
@@ -23,6 +24,7 @@ public class KeyRemapper : MonoBehaviour
     GameObject currentButton;
     Image currentImage;
     Text currentText;
+    Color32 TextColor_Default;
     string previousStringOnButton; //Cache the original text so we can revert changes
 
     //Buffer keybinds: so we can revert the changes
@@ -38,7 +40,7 @@ public class KeyRemapper : MonoBehaviour
             //Lookup.GetBtnText(b.Key).text = Lookup.GetKeycode(b.Key).ToString();
         }
 
-        KeyScheme.LoadFromPlayerPrefs();
+        KeyScheme.LoadKeycodesFromPlayerPrefs();
     }
 
     public void Initialize()
@@ -47,11 +49,11 @@ public class KeyRemapper : MonoBehaviour
         Lookup = GetComponent<KeyRemappingUILookup>();
 
         //Load keyscheme and update display
-        KeyScheme.LoadFromPlayerPrefs();
-        UpdateAllUiDisplay();
+        KeyScheme.LoadKeycodesFromPlayerPrefs();
+        UpdateAllUiButtonText();
     }
 
-    public void UpdateAllUiDisplay()
+    public void UpdateAllUiButtonText()
     {
 
         Lookup.GetBtnText(Keystrings.Up).text = KeyScheme.Up.ToString();
@@ -64,7 +66,8 @@ public class KeyRemapper : MonoBehaviour
     public void ExitKeyBind()
     {
         Debug.Log("ExitKeyBind");
-        currentImage.color = ButtonCOlor_Default;
+        currentImage.color = ButtonColor_Default;
+        currentText.color = TextColor_Default;
         IsListeningForKey = false;
     }
 
@@ -83,6 +86,8 @@ public class KeyRemapper : MonoBehaviour
             //Visual indication that we're listening for a key input
             currentImage.color = ButtonColor_Modifying;
             currentText.text = "???";
+            TextColor_Default = currentText.color;
+            currentText.color = Color.white;
 
             //Begin listening for an input
             StartCoroutine(ListenForKeyInput());

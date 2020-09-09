@@ -12,9 +12,12 @@ public class SceneForestManager : Singleton<SceneForestManager>
     protected void Awake()
     {
         DeleteDuplicateSingleton();
-        instance = this;
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(this);
+        }
     }
-
 
     void Start()
     {

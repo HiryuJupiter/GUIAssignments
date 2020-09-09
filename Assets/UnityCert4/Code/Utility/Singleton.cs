@@ -16,5 +16,14 @@ public abstract class Singleton<T> : MonoBehaviour where T : MonoBehaviour
         }
     }
 
-
+    /*Usage
+     * protected void Awake()
+    {
+        DeleteDuplicateSingleton();
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(this);
+        }
+    }*/
 }
