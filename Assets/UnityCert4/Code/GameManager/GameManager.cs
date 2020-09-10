@@ -3,8 +3,10 @@ using System.Collections;
 
 public class GameManager : Singleton<GameManager>
 {
-    public GameData GameData { get; private set; }
+    [HideInInspector] 
     public bool loadeSaveFile = false;
+
+    public GameData GameData { get; private set; }
 
     void Awake()
     {

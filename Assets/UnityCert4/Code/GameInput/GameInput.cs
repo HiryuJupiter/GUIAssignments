@@ -52,14 +52,14 @@ public class GameInput : MonoBehaviour
         JumpBtnUp   = Input.GetKeyUp(KeyScheme.Jump);
     }
 
-    private void OnGUI()
-    {
-        GUI.Label(new Rect(20, 20, 500, 20), "UP " + KeyScheme.Up);
-        GUI.Label(new Rect(20, 40, 500, 20), "DOWN " + KeyScheme.Down);
-        GUI.Label(new Rect(20, 60, 500, 20), "Left " + KeyScheme.Left);
-        GUI.Label(new Rect(20, 80, 500, 20), "Right " + KeyScheme.Right);
-        GUI.Label(new Rect(20, 110, 500, 20), "MoveX " + MoveX);
-        GUI.Label(new Rect(20, 130, 500, 20), "MoveY " + MoveY);
+    //private void OnGUI()
+    //{
+    //    GUI.Label(new Rect(20, 20, 500, 20), "UP " + KeyScheme.Up);
+    //    GUI.Label(new Rect(20, 40, 500, 20), "DOWN " + KeyScheme.Down);
+    //    GUI.Label(new Rect(20, 60, 500, 20), "Left " + KeyScheme.Left);
+    //    GUI.Label(new Rect(20, 80, 500, 20), "Right " + KeyScheme.Right);
+    //    GUI.Label(new Rect(20, 110, 500, 20), "MoveX " + MoveX);
+    //    GUI.Label(new Rect(20, 130, 500, 20), "MoveY " + MoveY);
 
-    }
+    //}
 }

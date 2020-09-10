@@ -11,7 +11,6 @@ public class FlockAgent : MonoBehaviour
     public Flock AgentFlock { get{ return agentFlock;}}
     public Collider2D Collider { get { return agentCollider; } }
 
-
     void Start()
     {
         agentCollider = GetComponent<Collider2D>();
