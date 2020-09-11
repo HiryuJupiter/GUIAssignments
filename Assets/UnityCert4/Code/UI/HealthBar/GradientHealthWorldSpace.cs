@@ -38,7 +38,6 @@ public class GradientHealthWorldSpace : MonoBehaviour
     #region Unity
     void Start()
     {
-        Debug.Log("gradient hp Start");
         UpdateHealthBar();
     }
 

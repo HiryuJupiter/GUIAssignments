@@ -254,7 +254,7 @@ public class OptionsMenu : MonoBehaviour
 
         if (saved_w != 0 && saved_h != 0)
         {
-            Debug.Log("Has saved resolution data in PlayerPrefs.");
+            Debug.Log("Found saved resolution data in PlayerPrefs.");
             for (int i = 0; i < supportedResolutions.Count; i++)
             {
                 if (saved_w == supportedResolutions[i].width &&
@@ -263,15 +263,15 @@ public class OptionsMenu : MonoBehaviour
                     Dropdown_Resolutions.value = i;
                     SetResolution(i);
 
-                    Debug.Log("Matching resolution data found in playerPrefs. Exiting LoadResolution().");
+                    Debug.Log("Saved resolution data and is supported by monitor. ");
                     return;
                 }
             }
-            Debug.Log("Saved resolution data was found but is not in the list of supportedResolutions.");
+            Debug.Log("Saved resolution data was found but is not supported by the monitor.");
         }
         else
         {
-            Debug.Log("No saved resolution setting.");
+            Debug.Log("No saved resolution data found.");
         }
 
         //2. See if there is a supported resolution that matches the screen.
