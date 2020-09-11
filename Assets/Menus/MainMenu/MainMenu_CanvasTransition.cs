@@ -1,7 +1,5 @@
 ﻿using UnityEngine;
 using System.Collections;
-using UnityEngine.Rendering;
-using UnityEngine.XR.WSA.Input;
 
 public class MainMenu_CanvasTransition : MonoBehaviour
 {

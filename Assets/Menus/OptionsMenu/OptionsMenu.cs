@@ -9,6 +9,8 @@ using UnityEngine.Audio;
 
 public class OptionsMenu : MonoBehaviour
 {
+    public static OptionsMenu instance;
+
     [Header("UI - Graphics")]
     public Dropdown Dropdown_Qualities;
     public Dropdown Dropdown_Resolutions;
@@ -43,10 +45,32 @@ public class OptionsMenu : MonoBehaviour
 
     SfxManager sfxManager;
 
+    //prop
+    public bool IsFullScreen { get { return isFullscreen; } }
+
+    void Awake()
+    {
+        instance = this;
+    }
+
     void Start()
     {
         sfxManager = SfxManager.instance;
         LoadOptionsSettings();
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            string s = "";
+            foreach (var entry in supportedResolutions)
+            {
+                s += entry;
+                s += ", ";
+            }
+            //DebuggerText.Display_Text(s);
+        }
     }
 
     #region Public UI Click Handlers
@@ -149,7 +173,9 @@ public class OptionsMenu : MonoBehaviour
         //dropdown values outside.
         resolutionIndex = index;
 
-        Screen.SetResolution(supportedResolutions[index].width, supportedResolutions[index].height, Screen.fullScreen);
+        Screen.SetResolution(supportedResolutions[index].width, supportedResolutions[index].height, isFullscreen);
+        //DebuggerText.Display_Text($"INDEX: {index}, Set resolution {supportedResolutions[index].width} , {supportedResolutions[index].height}, {isFullscreen}" +
+        //    $"Screen.currentResolution: {Screen.currentResolution.width} x {Screen.currentResolution.height}");
     }
 
     void SetQuality(int index)
@@ -174,14 +200,33 @@ public class OptionsMenu : MonoBehaviour
         //Note: We use the following line instead of "allResolutions = Screen.resolutions;" to prevent returning duplicates 
         //of the same resolution in the build version.
         //supportedResolutions = Screen.resolutions.Where(resolution => resolution.refreshRate == 60).ToList();
-        supportedResolutions = Screen.resolutions.ToList();
+
+        List<Resolution> rawResolutions = new List<Resolution>();
+        supportedResolutions = new List<Resolution>();
+        rawResolutions = Screen.resolutions.ToList();
+
+        //Get the highet refreshrate
+        int highestRefresh = -1;
+        foreach (var r in rawResolutions)
+        {
+            if(r.refreshRate > highestRefresh)
+            {
+                highestRefresh = r.refreshRate;
+            }
+        }
+
+        //Filter the resolutions that uses the highest refreshrate
+        rawResolutions = Screen.resolutions.Where(resolution => resolution.refreshRate == highestRefresh).ToList();
+
+        //Display the list of resolution options in ui.dropdown menu
         List<string> options = new List<string>();
 
-        for (int i = 0; i < supportedResolutions.Count; i++)
+        for (int i = 0; i < rawResolutions.Count; i++)
         {
-            string s = supportedResolutions[i].width + "x" + supportedResolutions[i].height;
-            if (!options.Contains(s))
+            string s = rawResolutions[i].width + "x" + rawResolutions[i].height;
+            //if (!options.Contains(s))
             {
+                supportedResolutions.Add(rawResolutions[i]);
                 options.Add(s);
             }
         }
