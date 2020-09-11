@@ -5,12 +5,14 @@ using UnityEngine;
 public class SfxManager : MonoBehaviour
 {
     public static SfxManager instance;
-    [SerializeField]
-    GameObject sfx_menuTransition;
     [SerializeField] 
-    GameObject sfx_buttonClick;
+    GameObject sfx_UI_1_Click;
     [SerializeField]
-    GameObject sfx_uiQuietTick;
+    GameObject sfx_UI_2_bom;
+    [SerializeField]
+    GameObject sfx_UI_3_tape;
+    [SerializeField]
+    GameObject sfx_UI_4_shake;
 
     bool canPlaySfx = false;
 
@@ -30,22 +32,28 @@ public class SfxManager : MonoBehaviour
     #endregion
 
     #region Public
-    public void SpawnUIButtonClick ()
+    public void SpawnUI_1_Click ()
     {
         if (canPlaySfx)
-            instance.SpawnSfxPrefab(sfx_buttonClick);
+            instance.SpawnSfxPrefab(sfx_UI_1_Click);
     }
 
-    public void SpawnQuietTick()
+    public void SpawnUI_2_bom()
     {
         if (canPlaySfx)
-            instance.SpawnSfxPrefab(sfx_uiQuietTick);
+            instance.SpawnSfxPrefab(sfx_UI_2_bom);
     }
 
-    public void SpawnUIMenuTransition()
+    public void SpawnUI_3_tape()
     {
         if (canPlaySfx)
-            instance.SpawnSfxPrefab(sfx_menuTransition);
+            instance.SpawnSfxPrefab(sfx_UI_3_tape);
+    }
+
+    public void SpawnUI_4_shake()
+    {
+        if (canPlaySfx)
+            instance.SpawnSfxPrefab(sfx_UI_4_shake);
     }
     #endregion
 

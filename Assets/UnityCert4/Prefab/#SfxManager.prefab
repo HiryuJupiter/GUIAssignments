@@ -43,9 +43,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0722fe2d1c80a834eaba1400769201a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sfx_menuTransition: {fileID: 8752018992337267384, guid: 684ab2b64e11a8d4bbf63184e2a22709,
+  sfx_UI_1_Click: {fileID: 8752018992337267384, guid: 3f60ef0980adb514c809a2478325dc24,
     type: 3}
-  sfx_buttonClick: {fileID: 8752018992337267384, guid: 3f60ef0980adb514c809a2478325dc24,
+  sfx_UI_2_bom: {fileID: 8752018992337267384, guid: 4c48b75e3b15feb4787537df1d7e89a8,
     type: 3}
-  sfx_uiQuietTick: {fileID: 8752018992337267384, guid: 684ab2b64e11a8d4bbf63184e2a22709,
+  sfx_UI_3_tape: {fileID: 8752018992337267384, guid: b726d52641421614e8fde688b89576c2,
+    type: 3}
+  sfx_UI_4_shake: {fileID: 8752018992337267384, guid: 6a714f8f67a6f5149ac9933960b47024,
     type: 3}

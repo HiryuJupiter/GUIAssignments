@@ -36,7 +36,7 @@ public class PauseMenu : MonoBehaviour
                     OptionsToPauseMain();
                     break;
             }
-            sfxManager.SpawnUIButtonClick();
+            sfxManager.SpawnUI_1_Click();
         }
     }
 
@@ -50,25 +50,25 @@ public class PauseMenu : MonoBehaviour
     #region Public - Click unity events
     public void UIHandle_UnPause()
     {
-        sfxManager.SpawnUIMenuTransition();
+        sfxManager.SpawnUI_1_Click();
         UnPause();
     }
 
     public void UIHandle_OpenOptionsMenu ()
     {
-        sfxManager.SpawnUIMenuTransition();
+        sfxManager.SpawnUI_1_Click();
         PauseMainToOptions();
     }
 
     public void UIHandle_CloseOptionsMenu ()
     {
-        sfxManager.SpawnUIMenuTransition();
+        sfxManager.SpawnUI_1_Click();
         OptionsToPauseMain();
     }
 
     public void UIHandle_QuitGame()
     {
-        sfxManager.SpawnUIMenuTransition();
+        sfxManager.SpawnUI_1_Click();
         QuitGame();
     }
     #endregion

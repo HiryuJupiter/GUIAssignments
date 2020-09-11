@@ -54,37 +54,37 @@ public class OptionsMenu : MonoBehaviour
     public void UIHandle_SetResolution(int index)
     {
         SetResolution(index);
-        sfxManager.SpawnUIButtonClick();
+        sfxManager.SpawnUI_2_bom();
     }
 
     public void UIHandle_SetQuality(int index)
     {
         SetQuality(index);
-        sfxManager.SpawnUIButtonClick();
+        sfxManager.SpawnUI_2_bom();
     }
 
     public void UIHandle_SetFullScreen(bool b)
     {
         SetFullScreen(b);
-        sfxManager.SpawnUIButtonClick();
+        sfxManager.SpawnUI_2_bom();
     }
 
     //AUDIO
     public void UIHandle_Set_MusicVolumn(float value)
     {
-        //sfxManager.SpawnQuietTick();
+        sfxManager.SpawnUI_2_bom();
         Set_MusicVolumn(value);
     }
 
     public void UIHandle_Set_SfxVolumn(float value)
     {
-        //sfxManager.SpawnQuietTick();
+        sfxManager.SpawnUI_2_bom();
         Set_SfxVolumn(value);
     }
 
     public void UIHandle_SetMute(bool b)
     {
-        sfxManager.SpawnUIButtonClick();
+        sfxManager.SpawnUI_2_bom();
         SetMute(b);
     }
     #endregion
@@ -260,7 +260,7 @@ public class OptionsMenu : MonoBehaviour
 
     void Set_SfxVolumn(float value)
     {
-        //Convert linear value to a logarithmic value
+        //Convert linear slider value to a logarithmic value
         mixer.SetFloat(Key_SFXVol, Mathf.Log10(value) * 20);
     }
 

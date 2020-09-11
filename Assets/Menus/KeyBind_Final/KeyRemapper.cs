@@ -76,7 +76,7 @@ public class KeyRemapper : MonoBehaviour
     {
         if (!IsListeningForKey)
         {
-            sfxManager.SpawnUIButtonClick();
+            sfxManager.SpawnUI_4_shake();
             IsListeningForKey = true;
 
             //Cache references
@@ -137,6 +137,7 @@ public class KeyRemapper : MonoBehaviour
                         //Save (int)keycode to playerPref
                         string keystring = Lookup.GetKeystringOfButton(currentButton);
                         SetBufferKeybind(keystring, keycode);
+                        sfxManager.SpawnUI_4_shake();
 
                         //KeyScheme.SaveKeycodeToPlayerPrefs(keystring, keycode); //If you want to save 1 key at a time
 
@@ -158,6 +159,4 @@ public class KeyRemapper : MonoBehaviour
         //Lookup.GetBtnText(keystring).text = Lookup.GetKeycode(keystring).ToString();
     }
     #endregion
-
-    
 }
