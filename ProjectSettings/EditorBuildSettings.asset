@@ -6,10 +6,10 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/UnityCert4/Scenes/MainMenu.unity
+    path: Assets/TripleMenu/Scenes/MainMenu.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
-    path: Assets/UnityCert4/Scenes/FPS.unity
+    path: Assets/TripleMenu/Scenes/FPS.unity
     guid: 9b9a3403ce91e554e860e4e2a6aab0a2
   - enabled: 0
     path: Assets/UnityCert4/Scenes/_test.unity
